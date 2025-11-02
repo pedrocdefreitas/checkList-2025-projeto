@@ -1,0 +1,248 @@
+/* Variáveis de Cores (Design Tokens) */
+:root {
+    /* Neutros */
+    --cor-fundo-principal: #FFFFFF; /* Branco Puro */
+    --cor-fundo-secundario: #F8F9FA; /* Cinza claro/Quase branco (para cards ou seções) - Padrão Bootstrap Light */
+    --cor-borda: #E9ECEF; /* Cinza muito claro para bordas/divisórias */
+    
+    /* Tipografia e Ícones (Preto Azulado) */
+    --cor-texto-principal: #1A1A2E; /* Preto não tão preto, puxando para um azul marinho sutil */
+    --cor-texto-secundario: #6C757D; /* Cinza escuro para textos auxiliares */
+    
+    /* Cores de Ação (Verde/Ciano Vibrante do seu Figma) */
+    --cor-destaque-principal: #00C890; /* Verde/Ciano vibrante para botões e checkboxes */
+    --cor-destaque-hover: #00B37F; /* Uma versão um pouco mais escura para o efeito hover */
+
+    /* Cores Semânticas (para feedback) */
+    --cor-sucesso: var(--cor-destaque-principal);
+    --cor-alerta: #FFC107; /* Amarelo (Avisos) */
+    --cor-erro: #DC3545; /* Vermelho (Remoção/Erro) */
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+
+textarea:focus {
+  outline: none;
+  border-color: initial; /* Opcional: Para evitar que a borda mude de cor ao focar */
+  box-shadow: none;     /* Opcional: Para remover qualquer sombra de foco */
+}
+
+body{
+   background-color: #00B37F;
+   overflow: hidden;
+}
+
+main{
+   width: 100vw;
+   min-height: 100vh;
+   background: linear-gradient(to bottom, #045da5, #290392);
+  
+}
+
+/* 1. Define a largura da barra de rolagem (para barras verticais) */
+::-webkit-scrollbar {
+  width: 8px; /* Largura da barra */
+  height: 8px; /* Altura da barra (para barras horizontais) */
+}
+
+/* 2. Estiliza o trilho (a área de fundo) */
+::-webkit-scrollbar-track {
+  background: #f1f1f100; /* Cor de fundo do trilho */
+  border-radius: 10px; /* Borda arredondada do trilho */
+}
+
+/* 3. Estiliza o puxador (o elemento que se move) */
+::-webkit-scrollbar-thumb {
+  background: #007bff; /* Cor do puxador (azul) */
+  border-radius: 10px; /* Borda arredondada do puxador */
+}
+
+/* 4. Estiliza o puxador ao passar o mouse (opcional) */
+::-webkit-scrollbar-thumb:hover {
+  background: #002349; /* Cor mais escura ao passar o mouse */
+}
+
+#icone-menu{
+   width: 40px;
+   height: 30px;
+}
+
+#icone-menu i{
+   font-size: 2rem;
+   color: #00C890;
+   padding: 0;
+   margin: 0;
+   width: 50px;
+   cursor: pointer;
+   transition: .5s;
+}
+
+#icone-menu i:hover{
+   font-size: 2.5rem;
+   color: #c2ffee;
+   filter: drop-shadow(3px 3px 2px rgba(0, 0, 46, 0.527));
+
+}
+
+#bg-patterns{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+
+   background-image: url('/img/bg-patterns/bg-lapis.png');
+   background-size: 200px;
+   opacity: .3;
+  
+   
+}
+
+#logo{
+   width: 100px;
+   position: absolute;
+   margin: 1%;
+   top: 0;
+   right: 0;
+}
+
+#img-btn-inserir{
+   width: 50px;
+   object-fit: contain;
+   cursor: pointer;
+   opacity: .5;
+   transition: .5s;
+}
+
+#container{
+   overflow: hidden;
+   position: relative;
+   width: 95%;
+   min-height: 100vh;
+   margin: 0 auto;
+   
+}
+
+#caixa-inserir-na-lista{
+   position: relative;
+   width: 100%;
+   max-width: 800px;
+   min-height: 60px;
+   background-color: rgb(240, 248, 255);
+   top: 100px;
+   margin: 0 auto;
+   display: flex;
+   align-self: center;
+   justify-content: space-around;
+   padding: 5%;
+
+   border-radius: 20px;
+   border-bottom: #00C890 solid 5px;
+   filter: drop-shadow(5px 8px 15px);
+}
+
+#elefante-02{
+   position: absolute;
+   width: 50%;
+   max-width: 380px;
+   z-index: 1;
+   top: -50px;
+   left: -50px;
+   transform: rotate(-180deg)  scaleX(-1);
+}
+
+#elefante-01{
+   position: absolute;
+   width: 30%;
+   max-width: 280px;
+   z-index: 1;
+   bottom: 0;
+   margin-bottom: -30px;
+   margin-left: 50%;
+   transform: translateX(-50%);
+   
+}
+
+#caixa-inserir-na-lista textarea{
+   background-color: transparent;
+   width: 80%;
+   border: none;
+   font-size: 1.5rem;
+   border-bottom: #00C890 solid .5px;
+}
+
+#itens-lista-de-tarefas{
+   overflow-y: auto;
+   max-width: 800px;
+   position: relative;
+   top: 150px;
+   background-color: transparent;
+   width: 100%;
+   height: auto;
+   max-height: 50vh;
+   margin: 0 auto;
+   border-radius: 20px;
+   padding: 5%;
+
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   backdrop-filter: blur(2px);
+}
+
+
+/* #itens-lista-de-tarefas::before{
+
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   background-color: rgba(250, 235, 215, 0.055);
+   width: 100%;
+   height: 100%;
+   
+   z-index: -1;
+   border-radius: 20px;
+   border: #e9ecef27 solid 1px;
+} */
+
+#itens-lista-de-tarefas article{
+   background-color: #4339cc;
+   border-bottom: #45ff16 solid 5px;
+   padding: 5%;
+   border-radius: 10px;
+   color: rgb(236, 241, 247);
+   text-align: center;
+   cursor: pointer;
+
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+}
+
+#itens-lista-de-tarefas article p{
+   width: 80%;
+   font-weight: 500;
+   text-transform: uppercase;
+}
+
+#hora{
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   padding: 2%;
+   background: linear-gradient(50deg, #00C890 20%, #04a554 80%);
+   background-color: #249cff;
+
+   margin: 2%;
+   border-radius: 15px;
+  
+}
+
+#hora p{
+   color: #1A1A2E;
+   font-size: 2rem;
+   font-weight: bold;
+   letter-spacing: 5px;
+   font-family: "Big Shoulders", sans-serif;
+}

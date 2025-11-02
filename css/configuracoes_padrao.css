@@ -1,0 +1,33 @@
+/* RESET CSS BÁSICO E MODERNO */
+*, *::before, *::after {
+    box-sizing: border-box; /* Garante que padding e border não aumentem a largura/altura */
+    margin: 0;
+    padding: 0;
+}
+
+/* Base para Tipografia e Fluxo */
+html {
+    font-size: 100%; /* Boa base para design responsivo */
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%; /* Evita que o texto aumente no iOS */
+    font-family: "Nunito", sans-serif;
+}
+
+/* Remove margem padrão de alguns elementos */
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
+    margin: 0;
+    padding: 0;
+}
+
+/* Otimiza imagens e mídias */
+img, picture, video, canvas, svg {
+    max-width: 100%;
+    display: block;
+}
+
+/* Remove estilos de lista padrão */
+ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
