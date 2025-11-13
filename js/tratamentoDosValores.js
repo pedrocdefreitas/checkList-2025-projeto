@@ -123,7 +123,7 @@ async function funcoesDosIcones(dadosRecebidos){
             })
 
             function acoesCheck(e){
-               
+               console.log('estou na função de chack')
             }
 
             lixeiraGeral.addEventListener('click', function(){
