@@ -17,6 +17,22 @@
     --cor-sucesso: var(--cor-destaque-principal);
     --cor-alerta: #FFC107; /* Amarelo (Avisos) */
     --cor-erro: #DC3545; /* Vermelho (Remoção/Erro) */
+
+
+    /* Cores de Fundo Principal */
+  --color-background-start: #E0F7FA; /* Azul Céu Pastel (Início do Degradê) */
+  --color-background-end: #F3E5F5;   /* Lavanda Clara (Fim do Degradê) */
+  --color-surface-white: #FFFFFF;    /* Branco Puro (Para Caixa de Texto/Superfície) */
+  --color-item-background: #E6E0F8;  /* Lavanda Pastel (Fundo dos Itens da Lista) */
+
+  /* Cores de Ação e Cabeçalho */
+  --color-header-start: #B9FBC0;     /* Verde Menta Claro (Início do Degradê do Cabeçalho) */
+  --color-header-end: #8EEDD2;       /* Ciano Pastel (Fim do Degradê do Cabeçalho) */
+  --color-action-success: #81C784;   /* Verde Menta Suave (Check/Conclusão) */
+  --color-action-danger: #FFCCBC;    /* Pêssego Suave (Lixeira/Remoção) */
+
+  /* Cores de Texto e Ícones (Alto Contraste) */
+  --color-text-main: #455A64;        /* Azul Escuro Suave (Texto principal e Ícones de Ação) */
 }
 
 
@@ -29,16 +45,18 @@ textarea:focus {
   box-shadow: none;     /* Opcional: Para remover qualquer sombra de foco */
 }
 
-body{
-   background-color: #00B37F;
-   overflow: hidden;
-}
 
-main{
-   width: 100vw;
-   min-height: 100vh;
-   background: linear-gradient(to bottom, #045da5, #290392);
-  
+@keyframes fade-in-slide {
+    /* Estado Inicial (0%) */
+    from {
+        opacity: 0;           /* Totalmente invisível */
+        transform: translateY(20px); /* Deslocado 20px para baixo */
+    }
+    /* Estado Final (100%) */
+    to {
+        opacity: 1;           /* Totalmente visível */
+        transform: translateY(0);    /* Posição original */
+    }
 }
 
 /* 1. Define a largura da barra de rolagem (para barras verticais) */
@@ -64,185 +82,218 @@ main{
   background: #002349; /* Cor mais escura ao passar o mouse */
 }
 
-#icone-menu{
-   width: 40px;
-   height: 30px;
+img{
+   width: 25%;
 }
 
-#icone-menu i{
-   font-size: 2rem;
-   color: #00C890;
-   padding: 0;
-   margin: 0;
-   width: 50px;
-   cursor: pointer;
-   transition: .5s;
-}
-
-#icone-menu i:hover{
-   font-size: 2.5rem;
-   color: #c2ffee;
-   filter: drop-shadow(3px 3px 2px rgba(0, 0, 46, 0.527));
-
-}
-
-#bg-patterns{
-   width: 100%;
-   height: 100%;
-   position: absolute;
-
-   background-image: url('/img/bg-patterns/bg-lapis.png');
-   background-size: 200px;
-   opacity: .3;
-  
+body{
+   background: linear-gradient(-50deg,  #B9FBC0,  #8EEDD2, #E6E0F8);
+   min-height: 100dvh;
    
 }
 
-#logo{
-   width: 100px;
-   position: absolute;
-   margin: 1%;
-   top: 0;
-   right: 0;
-}
-
-#img-btn-inserir{
-   width: 50px;
-   object-fit: contain;
-   cursor: pointer;
-   opacity: .5;
-   transition: .5s;
-}
-
-#container{
-   overflow: hidden;
-   position: relative;
+#banner-estiloso{
    width: 95%;
-   min-height: 100vh;
+   height: 15vh;
+   background-image: url('/img/bg_user/5634ba1ae02446c985a11c7fc78cc86e.jpg');
+   background-size: 100%;
+   background-position: center;
+   background-color: #00C890;
+   border-radius: 25px;
    margin: 0 auto;
-   
+   margin-top: 2%;
+   margin-bottom: 15px;
 }
 
 #caixa-inserir-na-lista{
-   position: relative;
-   width: 100%;
-   max-width: 800px;
-   min-height: 60px;
-   background-color: rgb(240, 248, 255);
-   top: 100px;
-   margin: 0 auto;
+   width: 90%;
+   background-color: #e7fff8;
    display: flex;
-   align-self: center;
-   justify-content: space-around;
-   padding: 5%;
+   justify-content: space-evenly;
 
-   border-radius: 20px;
-   border-bottom: #00C890 solid 5px;
-   filter: drop-shadow(5px 8px 15px);
+   border-radius: 10px;
+   align-items: center;
+   margin: 0 auto;
+
 }
 
-#elefante-02{
-   position: absolute;
-   width: 50%;
-   max-width: 380px;
-   z-index: 1;
-   top: -50px;
-   left: -50px;
-   transform: rotate(-180deg)  scaleX(-1);
+
+#img-btn-inserir{
+   object-fit: contain;
+   width: 20px;
 }
 
-#elefante-01{
-   position: absolute;
-   width: 30%;
-   max-width: 280px;
-   z-index: 1;
-   bottom: 0;
-   margin-bottom: -30px;
-   margin-left: 50%;
-   transform: translateX(-50%);
-   
-}
-
-#caixa-inserir-na-lista textarea{
-   background-color: transparent;
+#autoExpand{
+   box-sizing: border-box;
    width: 80%;
+
    border: none;
-   font-size: 1.5rem;
-   border-bottom: #00C890 solid .5px;
-}
+   text-align: center;
 
-#itens-lista-de-tarefas{
-   overflow-y: auto;
-   max-width: 800px;
-   position: relative;
-   top: 150px;
    background-color: transparent;
-   width: 100%;
-   height: auto;
-   max-height: 50vh;
-   margin: 0 auto;
-   border-radius: 20px;
-   padding: 5%;
-
-   display: flex;
-   flex-direction: column;
-   gap: 15px;
-   backdrop-filter: blur(2px);
-}
-
-
-/* #itens-lista-de-tarefas::before{
-
-   content: "";
-   position: absolute;
-   top: 0;
-   left: 0;
-   background-color: rgba(250, 235, 215, 0.055);
-   width: 100%;
-   height: 100%;
    
-   z-index: -1;
-   border-radius: 20px;
-   border: #e9ecef27 solid 1px;
-} */
+}
 
 #itens-lista-de-tarefas article{
-   background-color: #4339cc;
-   border-bottom: #45ff16 solid 5px;
-   padding: 5%;
-   border-radius: 10px;
-   color: rgb(236, 241, 247);
-   text-align: center;
-   cursor: pointer;
-
+   position: relative;
+   transition: .5s;
+   background: linear-gradient(to left, #F3E5F5, #F3E5F5 ) ;
+   color: rgb(30, 48, 65);
    display: flex;
-   align-items: center;
-   justify-content: space-evenly;
+   
+   width: 90%;
+   margin: 0 auto;
+   margin-bottom: 10px;
+   margin-top: 10px;
+   padding: 2%;
+   border-radius: 10px;
+   overflow: hidden;
+   
+}
+
+#itens-lista-de-tarefas article::before{
+   content: "";
+   position: absolute;
+   transition: .5s;
+   width: 50%;
+   height: 100%;
+   background-color: #007bff;
+   border-radius: 0px 15px 15px 0px;
+   top: 0;
+   left: 0;
+   z-index: 1;
+}
+
+#itens-lista-de-tarefas article i{
+   position: relative;
+   width: 30px;
+   color: #00B37F;
+   font-size: 1.5rem;
+   z-index: 2;
 }
 
 #itens-lista-de-tarefas article p{
-   width: 80%;
-   font-weight: 500;
-   text-transform: uppercase;
+   position: relative;
+   width: 350px;
+   text-align: center;
+   min-height: 30px;
+   z-index: 2;
 }
 
-#hora{
+#menu-para-itens{
+   transition: .5s;
+   position: absolute;
+   top: 0;
+   left: 0;
+   background: linear-gradient(to left, #B9FBC0, #00B37F);
+   width: 70%;
+   height: 60px;
+   border-radius: 15px;
+
+   margin-left: 50%;
+   transform: translateX(-50%);
+   margin-top: -95px;
+
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+
+   filter: drop-shadow(5px 5px 5px #0000005d);
+   
+}
+
+.mostraMenu{
+   transition: .5s;
+   margin-top: 25px !important;
+}
+
+#menu-para-itens i{
+   font-size: 1.5rem;
+   color: #14212e;
+}
+
+#btn-excluir-tudo{
+   transition: .5s;
    position: absolute;
    bottom: 0;
    right: 0;
-   padding: 2%;
-   background: linear-gradient(50deg, #00C890 20%, #04a554 80%);
-   background-color: #249cff;
+   width: 60px;
+   height: 60px;
+   background-color: #f15424;
+   border-radius: 50%;
 
-   margin: 2%;
-   border-radius: 15px;
-  
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transform: translate(60px, 60px);
+   filter: drop-shadow(5px 5px 5px #0000005d);
+
 }
 
-#hora p{
-   color: #1A1A2E;
+.iconeLixeiraGeralMostra{
+   transition: .5s;
+   transform: translate(-45px, -35px) !important;
+}
+
+
+#btn-excluir-tudo img{
+   color: #f15424;
+   width: 50%;
+}
+
+#conteiner-icones-menu{
+   pointer-events: none;
+   position: absolute;
+   overflow: hidden;
+   top: 0;
+   width: 100%;
+   height: 100dvh;
+   z-index: -1;
+}
+
+.zindex{
+   z-index: 10 !important;
+   pointer-events: fill !important;
+}
+
+/* #conteiner-icones-menu .fa-times{
+   transition: .5s;
+   position: absolute;
+   bottom: 0;
    font-size: 2rem;
-   font-weight: bold;
-   letter-spacing: 5px;
-   font-family: "Big Shoulders", sans-serif;
+   transform: translate(-40px, 40px);
+   color: #f15424;
+}
+
+.iconeFecharGeral{
+   transition: .5s;
+   transform: translate(40px, -45px) !important;
+} */
+
+#conteiner-icones-menu #bordas-icone{
+   transition: .5s;
+   position: absolute;
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   background-color: #007bff;
+   bottom: 0;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   transform: translate(-60px, 60px);
+   font-size: 2rem;
+   color: #E6E0F8;
+   filter: drop-shadow(5px 5px 5px #0000005d);
+}
+
+.iconeFecharGeral{
+   transition: .5s;
+   transform: translate(40px, -35px) !important;
+}
+
+#bordas-icone i{
+   pointer-events: none;
 }

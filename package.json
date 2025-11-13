@@ -1,0 +1,18 @@
+{
+   "name": "checklist",
+   "version": "1.0.0",
+   "description": "Projeto de APP lista de itens com nodeJS e crud completo para compor portfolio",
+   "main": "/app.mjs",
+   "type": "module",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "author": "@freitas.pedrocesar",
+   "license": "ISC",
+   "devDependencies": {
+      "nodemon": "^3.1.10"
+   },
+   "dependencies": {
+      "express": "^5.1.0"
+   }
+}

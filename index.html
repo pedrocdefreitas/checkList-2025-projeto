@@ -3,6 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="/img/hand_document_list_paper_file_icon_219510.png" type="image/x-icon">
 
    <!-- { Configuração do Bootstrap } -->
 
@@ -27,94 +28,60 @@
    <link rel="stylesheet" href="/css/estilos_do_documento.css">
 
    <script defer src="/js/scroll_textarea.js"></script>
+   <script defer  src="/js/tratamentoDosValores.js"></script>
 
    <title>Projeto CHECKLIST - COM LOCAL STORAGE - CRUD FULL</title>
 </head>
 <body>
-   <img src="/img/ele-03.png" alt="" id="elefante-01">
+
+
+   <!-- <img src="/img/ele-03.png" alt="" id="elefante-01"> -->
 
    <main>
-      <img src="/img/ele-02.png" alt="" id="elefante-02">
-      
 
-      <div id="bg-patterns"></div>
-      
-      <div> <img  id="logo" src="/img/logo-prov.png" alt="imagem da logo"></div>
+      <div id="banner-estiloso">
+      </div>
+
+      <!-- <div> <img  id="logo" src="/img/logo-prov.png" alt="imagem da logo"></div> -->
 
       <section id="container">
-         
 
-         <section id="caixa-inserir-na-lista">
-            <textarea id="autoExpand" oninput="ajustarAltura(this)"></textarea>
-            <img id="img-btn-inserir" src="/img/btn-inserir.png" alt="">
+         <section class="" id="caixa-inserir-na-lista">
+            <textarea id="autoExpand" oninput="ajustarAltura(this)" placeholder="digite algo aqui para lembrar!" maxlength="150"></textarea>
+            <img id="img-btn-inserir" src="/img/btn-inserir.png" alt="botão para insetir itens a lista">
          </section>
 
          <section id="itens-lista-de-tarefas">
-
-            <article>
-               <p>Comprar uma maçã!</p>
-               <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </article>
-
-               <article>
-               <p>Comprar uma maçã!</p>
-               <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </article>
-
-               <article>
-               <p>Comprar uma maçã!</p>
-               <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </article>
-
-               <article>
-               <p>Comprar uma maçã!</p>
-               <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </article>
-
-               <article>
-               <p>Comprar uma maçã!</p>
-               <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </article>
-
-                  <article>
-               <p>Comprar uma maçã!</p>
-               <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </article>
-
-                  <article>
-               <p>Comprar uma maçã!</p>
-               <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </article>
-
-                  <article>
-               <p>Comprar uma maçã!</p>
-               <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </article>
-
-                  <article>
-               <p>Comprar uma maçã!</p>
-               <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </article>
-
-                  <article>
-               <p>Comprar uma maçã!</p>
-               <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </article>
-
-
-         
+            
          </section>
-
 
       </section>
 
-      <div id="hora">
+      <!-- <div id="hora">
          <p>22:00:00</p>
-      </div>
+      </div> -->
 
 
    </main>
    
+   <span id="conteiner-icones-menu">
+
+      <section class="" id="menu-para-itens">
+            <i class="fas fa-trash"></i>
+            <i class="fas fa-edit"></i>
+      </section>
+   
+      <section id="btn-excluir-tudo">
+         <img src="/img/trash-list.png" alt="">
+      </section>
+
+      <span id="bordas-icone">
+          <i id="icone-fechar-icones" class="fa fa-times" aria-hidden="true"></i>
+      </span>
+     
+
+
+   </span>
    
 </body>
 </html>
