@@ -53,6 +53,22 @@ app.post('/salvar', ( req, res)=>{
    
 })
 
+app.post('/atualizar', ( req, res)=>{
+
+   let Dados = req.body
+   const file = path.join(__dirname, '/dados', 'itens.json')
+
+   fs.writeFile(file, Dados, (err) => {
+    if (err) {
+        console.error("Erro ao salvar:", err);
+        return res.status(500).send({ message: 'Falha ao salvar dados.' });
+    }
+    res.status(200).send({ message: 'Dados atualizados com sucesso.' });
+    
+});
+})
+
+
 app.get('/todosositens', (req, res) => {
    let file = path.join(__dirname, 'dados', 'itens.json')
    let todosOsItens = JSON.parse(fs.readFileSync(file, 'utf-8'))

@@ -1,8 +1,32 @@
 let botaoInserirConteudoNaLista = document.querySelector('#img-btn-inserir').addEventListener('click', acaoInserir)
 
+
 let textoDaTextArea = document.querySelector('#autoExpand')
 let arrayDeItensAtualizado = new Array()
 recuperarListaAtualizada()
+
+
+window.onload = function(){
+
+   let atributoDoElementoConcluido = document.querySelectorAll('.item-unit')
+
+   atributoDoElementoConcluido.forEach( (el)=>{
+
+      let att_Concluido = el.getAttribute('concluido')
+      console.log(att_Concluido)
+
+      if( att_Concluido == 'true'){
+         el.setAttribute('class', 'itemConcluido') 
+         
+         return false
+      }
+      
+   })
+  
+
+   
+}
+
 
 function acaoInserir(){
 
@@ -12,7 +36,6 @@ function acaoInserir(){
    
   
 }
-
 
 function requisicoesXmlHttp(metodo, url, dados){
 
@@ -69,7 +92,7 @@ async function recuperarListaAtualizada(){
 
       let item = 
       `
-           <article class="item-unit" value="${element.id}">
+           <article class="item-unit" value="${element.id}" concluido="${element.is_fim}">
                   <i class="fa-solid fa-check"></i>
                   <p class="desc-item">${element.item}</p>
                   <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
@@ -86,6 +109,35 @@ async function recuperarListaAtualizada(){
 
 }
 
+async function acoesCheck(e){
+               
+               let idElemento = e.target.parentNode.getAttribute('value')
+               let JSONLIST = await requisicoesXmlHttp('GET', '/todosositens')
+
+               let resultadoConsulta = JSONLIST.map( (item)=>{
+
+                  if(item.id === Number(idElemento)){
+                     return{
+                        ...item,
+                        is_fim: "true"
+                     }
+                  }
+                  return item
+               })
+
+               let LISTAATUALIZADA = JSON.stringify(resultadoConsulta, null, 2)
+
+               let http = new XMLHttpRequest()
+               http.open('POST', "/atualizar")
+               http.onreadystatechange = function(){
+                  if( http.status > 200){
+                     console.log('ok - item atualizado')
+                  }
+               }
+               http.send(LISTAATUALIZADA)
+
+               
+}
 
 async function funcoesDosIcones(dadosRecebidos){
 
@@ -122,10 +174,6 @@ async function funcoesDosIcones(dadosRecebidos){
                checkIcone.addEventListener('click', acoesCheck)
             })
 
-            function acoesCheck(e){
-               console.log('estou na função de chack')
-            }
-
             lixeiraGeral.addEventListener('click', function(){
                console.log('cliquei para excluir toda lista.')
             })
@@ -148,14 +196,9 @@ async function funcoesDosIcones(dadosRecebidos){
                
             })
 
-
-
-            console.log( iconeFecharTudo )
-
       }else{
          console.error('Array de itens não está no DOM...')
       }
-
 
 }
    
