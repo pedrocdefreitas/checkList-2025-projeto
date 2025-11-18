@@ -1,40 +1,20 @@
+animaItens()
+ListaDosItensViaSSE()
+
 let botaoInserirConteudoNaLista = document.querySelector('#img-btn-inserir').addEventListener('click', acaoInserir)
 
 
 let textoDaTextArea = document.querySelector('#autoExpand')
 let arrayDeItensAtualizado = new Array()
-recuperarListaAtualizada()
 
 
-window.onload = function(){
+function acaoInserir(event){
 
-   let atributoDoElementoConcluido = document.querySelectorAll('.item-unit')
-
-   atributoDoElementoConcluido.forEach( (el)=>{
-
-      let att_Concluido = el.getAttribute('concluido')
-      console.log(att_Concluido)
-
-      if( att_Concluido == 'true'){
-         el.setAttribute('class', 'itemConcluido') 
-         
-         return false
-      }
-      
-   })
-  
-
-   
-}
-
-
-function acaoInserir(){
-
-   if(!textoDaTextArea.value) return 
+   if(!textoDaTextArea.value) return alert('Campo vazio!')
    requisicoesXmlHttp("POST", "/salvar", JSON.stringify(textoDaTextArea.value))
    textoDaTextArea.value = ""
+   ListaDosItensViaSSE()
    
-  
 }
 
 function requisicoesXmlHttp(metodo, url, dados){
@@ -74,7 +54,6 @@ function requisicoesXmlHttp(metodo, url, dados){
 
         if(metodo.toUpperCase() == "POST"){
             xhr.send(dados);
-            window.location.href = '/'
         } else {
             xhr.send();
         }
@@ -82,14 +61,14 @@ function requisicoesXmlHttp(metodo, url, dados){
          
 }
 
-async function recuperarListaAtualizada(){
+async function updateTodoListDisplay(updatedTodos){
 
-   
    let conteinerLista = document.querySelector('#itens-lista-de-tarefas')
-   let dadosRecebidos = await requisicoesXmlHttp("GET", "/todosositens")
+   conteinerLista.innerHTML = '';
 
-   dadosRecebidos.forEach(element => {
-
+   updatedTodos.forEach(element => {
+ 
+     
       let item = 
       `
            <article class="item-unit" value="${element.id}" concluido="${element.is_fim}">
@@ -99,106 +78,114 @@ async function recuperarListaAtualizada(){
             </article>
       
       `  
-      conteinerLista.insertAdjacentHTML( 'beforeend', item)
 
-      
+      conteinerLista.insertAdjacentHTML( 'beforeend', item)
+      // conteinerLista.setAttribute('class', 'item-unit.animate-jelly')
 
    });
 
-   funcoesDosIcones(dadosRecebidos)
-
+   
 }
 
-async function acoesCheck(e){
-               
-               let idElemento = e.target.parentNode.getAttribute('value')
-               let JSONLIST = await requisicoesXmlHttp('GET', '/todosositens')
+function ListaDosItensViaSSE(){
+   
+   const eventSource = new EventSource('/api/todos/stream');
 
-               let resultadoConsulta = JSONLIST.map( (item)=>{
+   eventSource.onopen = function() {
+      console.log("Conexão SSE estabelecida com sucesso.");
+   };
 
-                  if(item.id === Number(idElemento)){
-                     return{
-                        ...item,
-                        is_fim: "true"
-                     }
-                  }
-                  return item
-               })
+   eventSource.onmessage = function(event){
+      // console.log("MENSAGEM SSE RECEBIDA:", event.data);
 
-               let LISTAATUALIZADA = JSON.stringify(resultadoConsulta, null, 2)
+      try{
+         
+         const updatedTodos = JSON.parse(event.data);
+         updateTodoListDisplay(updatedTodos)
 
-               let http = new XMLHttpRequest()
-               http.open('POST', "/atualizar")
-               http.onreadystatechange = function(){
-                  if( http.status > 200){
-                     console.log('ok - item atualizado')
-                  }
-               }
-               http.send(LISTAATUALIZADA)
+         // console.log("Tamanho da lista recebida:", updatedTodos.length);
 
-               
-}
-
-async function funcoesDosIcones(dadosRecebidos){
-
-      let elementoPaiItens = document.querySelectorAll('.item-unit')
-      let iconeEditar = document.querySelectorAll('#icone-menu')
-      let menuParaItens = document.querySelector('#menu-para-itens')
-      let lixeiraGeral = document.querySelector('#btn-excluir-tudo')
-      let iconeFecharTudo = document.querySelector('#bordas-icone')
-      let conteinericonesmenu = document.querySelector('#conteiner-icones-menu')
-      let btn_editar_lista = document.querySelector('#menu-para-itens .fa-edit')
-      let btn_excluir_item = document.querySelector('#menu-para-itens .fa-trash')
-      let btn_marcar_concluido = document.querySelectorAll('.fa-check')
-
-      if( elementoPaiItens.length > 0 ){
-
-            dadosRecebidos.forEach( (el)=>{
-               
-            })
-
-            iconeEditar.forEach( (tagI)=>{
-
-               tagI.addEventListener('click', function(e){
-                  let btn_menu_item = e.target
-                  menuParaItens.classList.toggle('mostraMenu')
-                  lixeiraGeral.classList.toggle('iconeLixeiraGeralMostra')
-                  iconeFecharTudo.classList.toggle('iconeFecharGeral')
-                  conteinericonesmenu.classList.toggle('zindex')
-               })
-
-            })
-
-
-            btn_marcar_concluido.forEach( (checkIcone)=>{
-               checkIcone.addEventListener('click', acoesCheck)
-            })
-
-            lixeiraGeral.addEventListener('click', function(){
-               console.log('cliquei para excluir toda lista.')
-            })
-
-            btn_editar_lista.addEventListener('click', function(){
-               console.log('clicando em editar')
-            })
-
-            btn_excluir_item.addEventListener('click', function(){
-               console.log('clicando em excluir item')
-            })
-
-            iconeFecharTudo.addEventListener('click', function () {
-               iconeFecharTudo.classList.toggle('iconeFecharGeral')
-               menuParaItens.classList.toggle('mostraMenu')
-               lixeiraGeral.classList.toggle('iconeLixeiraGeralMostra')
-               setTimeout( ()=>{
-                  conteinericonesmenu.classList.toggle('zindex')
-               }, 500)
-               
-            })
-
-      }else{
-         console.error('Array de itens não está no DOM...')
+      } catch (err){
+         console.error("Erro ao analisar os dados recebidos:", err);
       }
 
-}
+   }
+
+   // eventSource.onerror = function(err){
+   //    console.error("Erro de Conexão SSE. O navegador está tentando reconectar...", err);
+   // }
+
    
+}
+
+function animaItens() { 
+   
+   
+   window.onload = function () {  
+
+      let itens =  document.querySelectorAll('.item-unit')
+    
+         itens.forEach( (elemento)=>{
+         elemento.classList.add('animate-jelly')
+         })
+
+   }
+   
+}
+
+async function concluirTarefa(dados){
+
+   let iconeCheck = document.querySelectorAll('.fa-check') 
+   let lista = await requisicoesXmlHttp('GET', "/api/lista") 
+  
+
+   iconeCheck.forEach( (iconeCheck)=>{
+
+      iconeCheck.parentElement.addEventListener('click', (event)=>{ 
+
+      let TAG_item = event.target.parentElement
+      let TAG_Value = TAG_item.getAttribute('value')
+      
+         let copiaDalista = lista.map( (elemento) => {
+
+            if( elemento.id == TAG_Value){ 
+               // { Aqui estou filtrando o array de objetos pelo ID do elemento redenrizado na tela }
+              return {
+                  ... elemento,
+                  is_fim: true
+               }
+            }
+
+            return elemento
+            
+         })
+
+         
+         const JSONSTRING = JSON.stringify(copiaDalista);
+         requisicoesXmlHttp('POST', '/api/tarefaCompleta', JSONSTRING )
+      
+      })
+   })
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.onload = function () 
+{  
+concluirTarefa()
+}
