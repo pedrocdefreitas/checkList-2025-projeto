@@ -76,19 +76,38 @@ app.get('/api/lista', ( req, res )=>{
 
 app.post('/api/tarefaCompleta', ( req, res )=>{
 
+   const file = path.join(__dirname, 'dados', 'itens.json')
    const tarefaRecebida = req.body; 
-   console.log( JSON.parse(tarefaRecebida) )
-   
-   //  try {
-   //       console.log( tarefaRecebida )
-   //       res.status(200).send({ message: "Tarefa concluída com sucesso." });
-   //  } catch (error) {
-   //       console.error("Erro ao concluir tarefa:", error);
-   //       res.status(500).send({ error: "Falha interna ao processar tarefa." });
-   //  }
+  
+   try{
+      fs.writeFileSync(file, tarefaRecebida)
+      res.status(200).send({ message: "Tarefa concluída e salva com sucesso." });
+
+   }catch(err){
+      return new Error('Erro ao concluir item. ')
+   }
+
    
 })
 
+// { ROTA DE TESTE }
+app.get('/shortURL/:identificador', (req, res)=>{
+
+   let identificadorUser = req.params.identificador
+   console.log(identificadorUser)
+
+   if( identificadorUser == 'pedro'){
+
+      setTimeout( ()=>{
+         res.redirect('https://www.google.com.br')
+      }, 3000)
+
+   }else{
+      res.send('<h1>Usuário não encontrado</h1>')
+   }
+   
+
+})
 
 // { Funções necessárias para o sistema funcionar }
 
@@ -133,23 +152,6 @@ function lerArquivoJsonAtualizado(){
    return JSON.parse( data )
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function criaDiretorio() {
 

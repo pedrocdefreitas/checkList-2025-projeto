@@ -1,9 +1,15 @@
-animaItens()
-ListaDosItensViaSSE()
+
+document.addEventListener('DOMContentLoaded', function() {
+
+      console.log("DOM (estrutura HTML) totalmente carregado!");
+      animaItens()
+      // alteraFormatacaoItem()
+      ListaDosItensViaSSE()
+      
+});
+
 
 let botaoInserirConteudoNaLista = document.querySelector('#img-btn-inserir').addEventListener('click', acaoInserir)
-
-
 let textoDaTextArea = document.querySelector('#autoExpand')
 let arrayDeItensAtualizado = new Array()
 
@@ -74,7 +80,7 @@ async function updateTodoListDisplay(updatedTodos){
            <article class="item-unit" value="${element.id}" concluido="${element.is_fim}">
                   <i class="fa-solid fa-check"></i>
                   <p class="desc-item">${element.item}</p>
-                  <div id="icone-menu"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                  <div id="icone-menu-item"><i class="fa-solid fa-ellipsis-vertical"></i></div>
             </article>
       
       `  
@@ -102,6 +108,9 @@ function ListaDosItensViaSSE(){
          
          const updatedTodos = JSON.parse(event.data);
          updateTodoListDisplay(updatedTodos)
+         alteraFormatacaoItem()
+         concluirTarefa()
+         
 
          // console.log("Tamanho da lista recebida:", updatedTodos.length);
 
@@ -161,7 +170,7 @@ async function concluirTarefa(dados){
          })
 
          
-         const JSONSTRING = JSON.stringify(copiaDalista);
+         const JSONSTRING = JSON.stringify(copiaDalista, null, 2);
          requisicoesXmlHttp('POST', '/api/tarefaCompleta', JSONSTRING )
       
       })
@@ -169,23 +178,48 @@ async function concluirTarefa(dados){
    
 }
 
+function alteraFormatacaoItem() {
 
 
+   let itemEmTela = document.querySelectorAll('.item-unit')
+   
+   
+   let NodeListFormatado = itemEmTela.forEach( (item)=>{
 
+      if( item.getAttribute('concluido') == 'true' ){
+         item.classList.add('itemConcluido')
+      }
+   })
+   
 
-
-
-
-
-
-
-
-
-
-
-
-
-window.onload = function () 
-{  
-concluirTarefa()
 }
+
+function funcoesDosIcones(){
+
+      let menuCicle = document.querySelector('#icone-menu-cicle')
+      let botaoLixeiraGeral = document.querySelector('#btn-excluir-tudo')
+      let menuGeralItens = document.querySelector('#menu-para-itens')
+      let iconeHamburguer = document.querySelector("#icone-menu")
+      let iconeFechar = document.querySelector('#icone-fechar-icones')
+
+
+      menuCicle.addEventListener('click', ()=>{
+
+       
+            botaoLixeiraGeral.classList.toggle('iconeLixeiraGeralMostra')
+            // menuGeralItens.classList.toggle('mostraMenu')
+
+            iconeHamburguer.classList.toggle('mudaIconeHamb')
+            iconeFechar.classList.toggle('mudaIconeFechar')
+
+      })
+
+
+      botaoLixeiraGeral.addEventListener("click", ()=>{
+         let confirma = confirm('Deseja apagar todos os itens da lista?')
+      })
+
+
+}
+
+funcoesDosIcones()
