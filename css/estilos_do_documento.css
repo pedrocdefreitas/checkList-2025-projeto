@@ -82,75 +82,112 @@ textarea:focus {
   background: #002349; /* Cor mais escura ao passar o mouse */
 }
 
-
+*{
+   transition: .5s all;
+}
 
 body{
 
-  background: #123A63;
+  background-image: url('/img/bg_user/img1.wallspic.com-ios_16-ios-android-ios_14-ios_13-1170x2532.jpg');
+  background-size: cover;
 
 }
 
-
-#caixa-inserir-na-lista{
-   width: 90%;
-   height: 80px;
-   max-width: 600px;
-   background-color: #e7fff8;
-   display: flex;
-   justify-content: space-evenly;
-   align-items: center;
-
-   border-radius: 10px;
-   align-items: center;
-   margin: 0 auto;
-
-   margin-top: 35px;
-   margin-bottom: 20px;
-
-   font-size: 1.2rem;
-
+main{
+   box-sizing: border-box;
+   height: 100vh; 
+   width: 100vw;
    overflow: hidden;
 }
+
+#logo{
+   width: 50px;
+   position: absolute;
+   top: 0;
+   left: 0;
+   margin: 20px;
+}
+
+#container{
+   width: 100%;
+   height: 100px;
+   position: fixed;
+   display: block;
+   z-index: 5;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+#caixa-inserir-na-lista{
+   position: relative;
+   box-sizing: border-box;
+   background-color: aliceblue !important;
+   width: 85%;
+   height: 65px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   border-radius: 20px;
+   overflow: hidden;
+   margin-top: 100px;
+
+}
+
+
+#autoExpand{
+   display: block;
+   box-sizing: border-box;
+   width: 100%;
+   max-width: 600px;
+   text-align: center;
+   font-weight: 200;
+   padding-top: 15px;
+   border: none;
+   background-color: transparent;
+}
+
 
 #img-btn-inserir{
    cursor: pointer;
    object-fit: contain;
    width: 40px;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   right: 15px;
 }
 
-#autoExpand{
-   display: block;
-   box-sizing: border-box;
-   width: 80%;
-   max-width: 600px;
-
-   border: none;
-   text-align: center;
-   padding-top: 15px;
-
-   background-color: transparent;
-   
-   height: 40px;
-
+#container-dos-itens{
+   position: relative;
+   position: fixed;
+   bottom: 0;
+   top: 150px;
+   height: 90vh;
+   width: 100%;
+   overflow: scroll;
+   padding: 0;
+   scrollbar-width: none;
+   -ms-overflow-style: none;
 }
-
 
 #itens-lista-de-tarefas article{
    cursor: pointer;
    position: relative;
    transition: .5s;
-   background: linear-gradient(to left, #4189db 40%, #76b6ff ) ;
+   background-color: #c1d2ff ;
    color: rgb(30, 48, 65);
+   width: 80%;
 
 
-   width: 90%;
    max-width: 600px;
    height: 50px;
    
    margin: 0 auto;
    margin-bottom: 10px;
    margin-top: 10px;
-   padding: 2%;
    border-radius: 5px;
    overflow: hidden;
 
@@ -158,12 +195,14 @@ body{
    align-items: center;
    justify-content: space-around;
 
+   filter: drop-shadow(2px 2px 3px #0000004b);
+
 }
 
 #itens-lista-de-tarefas article.itemConcluido{
-   background: linear-gradient(to bottom, #a5cfff, #275d9b ) ;
    pointer-events: none !important;
-   opacity: .5 !important;
+   opacity: .4 !important;
+   transform: scale(.98) !important;
 }
 
 @keyframes jellyEntry {
@@ -190,56 +229,102 @@ body{
 }
 
 
-#itens-lista-de-tarefas article i{
-
-   color: #00B37F;
-   font-size: 1.5rem;
-}
-
 #itens-lista-de-tarefas article p{
 
    text-align: center;
    min-height: 30px;
-   font-weight: 500;
-   color: aliceblue;
-   font-weight: bold;
+   font-weight: 300;
+   color: rgb(30, 37, 44) !important;
+   width: 75%;
 }
 
 
 
-#menu-para-itens{
-   transition: .5s;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#editar-item {
    position: absolute;
-   top: 0;
-   left: 0;
-   background: linear-gradient(to left, #B9FBC0, #00B37F);
-   width: 70%;
-   height: 60px;
-   border-radius: 15px;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-10%);
+  /* Estilo Básico */
+  padding: 12px 25px;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px; /* Mais arredondado */
+  border: none;       /* Sem borda padrão, o gradiente já dá profundidade */
+  transition: all 0.3s ease; /* Transições mais abrangentes */
 
-   margin-left: 50%;
-   transform: translateX(-50%);
-   margin-top: -95px;
-
-   display: flex;
-   justify-content: space-evenly;
-   align-items: center;
-
-   filter: drop-shadow(5px 5px 5px #0000005d);
-   z-index: 55 !important;
+  /* Cores e Gradiente */
+  background: linear-gradient(145deg, #6dd5ed, #2193b0); /* Gradiente azul vibrante */
+  color: white;
+  box-shadow: 0 4px 15px rgba(33, 147, 176, 0.4); /* Sombra para profundidade */
 }
 
-.mostraMenu{
-   position: relative;
-   transition: .5s;
-   margin-top: 25px !important;
-   z-index: 55;
+#Excluir-item {
+
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-160%);
+  /* Estilo Básico */
+  padding: 12px 25px;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px; /* Mais arredondado */
+  border: none;       /* Sem borda padrão, o gradiente já dá profundidade */
+  transition: all 0.3s ease; /* Transições mais abrangentes */
+
+  /* Cores e Gradiente */
+  background: linear-gradient(145deg, #aa2d6c, #e0d203); /* Gradiente azul vibrante */
+  color: white;
+  box-shadow: 0 4px 15px rgba(33, 147, 176, 0.4); /* Sombra para profundidade */
 }
 
-#menu-para-itens i{
-   font-size: 1.5rem;
-   color: #14212e;
+.caixainserirnalistaeditando{
+   background-color: #f15424 !important;
+   border: 2px solid #ddb6ba !important;
+   
 }
+
+
 
 #btn-excluir-tudo{
    transition: .5s;
@@ -320,7 +405,6 @@ body{
    font-size: 1.5rem;
 }
 
-
 #icone-menu{
    transition: .5s;
    opacity: 1;
@@ -343,37 +427,3 @@ body{
 }
 
 
-#icone-menu-cicle{
-   position: relative;
-
-   overflow: hidden;
-   width: 50px;
-   height: 50px;
-   border-radius: 50%;
-   background: linear-gradient(#275d9b, #6ba4e6);
-
-   position: absolute;
-   bottom: 0;
-   margin: 25px;
-   cursor: pointer;
-
-}
-
-#conteiner-icones-menu{
-   pointer-events: none;
-   position: absolute;
-   top: 0;
-   left: 0;
-   overflow: hidden;
-   width: 100%;
-   height: 100vh;
-   z-index: 10;
-}
-
-#logo{
-   width: 50px;
-   position: absolute;
-   bottom: 0;
-   right: 0;
-   margin: 20px;
-}

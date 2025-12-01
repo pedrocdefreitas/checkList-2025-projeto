@@ -9,7 +9,6 @@
 html {
     font-size: 100%; /* Boa base para design responsivo */
     line-height: 1.5;
-    -webkit-text-size-adjust: 100%; /* Evita que o texto aumente no iOS */
     font-family: "Nunito", sans-serif;
 }
 

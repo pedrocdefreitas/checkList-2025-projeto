@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="shortcut icon" href="/img/hand_document_list_paper_file_icon_219510.png" type="image/x-icon">
+   <link rel="shortcut icon" href="/img/logo-prov.png" type="image/x-icon">
 
    <!-- { Configuração do Bootstrap } -->
 
@@ -26,52 +26,59 @@
    <!-- links para css padrão do projeto -->
    <link rel="stylesheet" href="/css/configuracoes_padrao.css">
    <link rel="stylesheet" href="/css/estilos_do_documento.css">
+   <link rel="stylesheet" href="/css/anima-icones.css">
 
    <script defer src="/js/scroll_textarea.js"></script>
    <script defer  src="/js/tratamentoDosValores.js"></script>
+   <script defer src="/js/anima-menu.js"></script>
 
    <title>Projeto CHECKLIST - COM LOCAL STORAGE - CRUD FULL</title>
 </head>
 <body>
-   
-   <div id="icone-menu-cicle">
-         <i class="fa-solid fa-bars" id="icone-menu"></i>
-         <i id="icone-fechar-icones" class="fa fa-times" aria-hidden="true"></i>
-   </div>
-  
+
+
    <main>
+      <!-- <button id="editar-item">Salvar edição </button> -->
+      
+   
+   
+         <div> <img  id="logo" src="/img/logo-prov.png" alt="imagem da logo"></div> 
 
-      <div> <img  id="logo" src="/img/logo-prov.png" alt="imagem da logo"></div>
-
-      <section id="container">
-
-         <section class="" id="caixa-inserir-na-lista">
-            <textarea id="autoExpand" oninput="ajustarAltura(this)" placeholder="digite algo aqui para lembrar!" maxlength="150"></textarea>
-            <img id="img-btn-inserir" src="/img/btn-inserir.png" alt="botão para insetir itens a lista">
-         </section>
-
-         <section id="itens-lista-de-tarefas">
+         <section id="container">
             
+               <section class="" id="caixa-inserir-na-lista">
+                  <textarea id="autoExpand" oninput="ajustarAltura(this)" placeholder="digite algo aqui para lembrar!" maxlength="30"></textarea>
+                  <img id="img-btn-inserir" src="/img/btn-inserir.png" alt="botão para insetir itens a lista">
+               </section>
+
          </section>
 
-      </section>
-
-
+         <section id="container-dos-itens">
+            <section id="itens-lista-de-tarefas"> 
+            </section>
+         </section>
+         
    </main>
-   
-   <span id="conteiner-icones-menu">
 
-      <section class="" id="menu-para-itens">
-            <i class="fas fa-trash"></i>
-            <i class="fas fa-edit"></i>
-      </section>
-   
-      <section id="btn-excluir-tudo">
-         <img src="/img/trash-list.png" alt="">
-      </section>
+         <article id="menu-itens-lateral">
 
+               <i class="fa fa-bars icones-menu-principal-hamb" aria-hidden="true"></i>
+
+               <div class="espaco-fixo-icones">
+
+               <i class="fa-brands fa-whatsapp icones-menu-principal primeiro-item"></i>
+               <i class="fa-regular fa-trash-can icones-menu-principal excluir-toda-a-lista"></i>
+               <i class="fa-solid fa-arrow-up-right-from-square icones-menu-principal"></i>
+               <i class="fa-solid fa-user icones-menu-principal"></i>
+
+               </div>
    
-   </span>
+         </article>
+   
+         <!-- <section id="btn-excluir-tudo">
+            <img src="/img/trash-list.png" alt="">
+         </section> -->
+
    
 </body>
 </html>

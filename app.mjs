@@ -90,6 +90,39 @@ app.post('/api/tarefaCompleta', ( req, res )=>{
    
 })
 
+app.post('/api/atualizarLista', ( req, res )=>{
+
+   try{
+
+      let respostaDoFront = req.body
+      const file = path.join(__dirname, 'dados', 'itens.json')
+      fs.writeFileSync(file, respostaDoFront)
+      res.status(200).send({ message: "Tarefa concluída e salva com sucesso.", status: 200 });
+      
+   }catch(e){
+      console.error(e)
+      res.status(400).send({ message: "Tarefa de edição deu ruim...", status: 400 });
+   }
+   
+})
+
+app.post('/app/deleteItem', (req, res)=>{
+
+      let respostaDoFront = req.body
+      const file = path.join(__dirname, 'dados', 'itens.json')
+      fs.writeFileSync(file, respostaDoFront)
+      res.status(200).send({ message: "Tarefa concluída e salva com sucesso.", status: 200 });
+      res.send("Rota para deletar item...")
+
+})
+
+app.post('/api/deletarListaCompleta', (req, res)=>{
+      
+      const file = path.join(__dirname, 'dados', 'itens.json')
+      fs.writeFileSync(file, '[]')
+      res.send('Rota para deletar lista completa...')
+})
+
 // { ROTA DE TESTE }
 app.get('/shortURL/:identificador', (req, res)=>{
 

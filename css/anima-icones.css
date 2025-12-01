@@ -1,0 +1,92 @@
+/* [Configurações somente do menu lateral e dos icones] */
+
+#menu-itens-lateral{
+   position: absolute;
+   bottom: 20px;
+   left: 10px;
+   width: 60px;
+   height: 60px;
+   border-radius: 100px;
+   overflow: hidden;
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   background-color: rgb(64, 92, 216);
+}
+
+#menu-itens-lateral:hover{
+   width: 260px;
+   border-radius: 50px;
+}
+
+
+#menu-itens-lateral .icones-menu-principal-hamb{
+   position: absolute;
+   color: aliceblue;
+   margin-left: 19px;
+}
+
+#menu-itens-lateral .espaco-fixo-icones{
+   position: absolute;
+   width: 150px;
+   display: flex;
+   margin-left: 65px;
+   font-size: 1.2rem;
+  
+}
+
+#menu-itens-lateral .espaco-fixo-icones i{
+   color: aliceblue;
+   font-size: 1.2rem;   
+   margin-left: 25px;
+   cursor: pointer;
+   padding: 2%;
+}
+
+#menu-itens-lateral .espaco-fixo-icones .primeiro-item{
+    margin-left: 1px;
+}
+
+#icone-menu-item{
+   display: flex;
+   align-items: center;
+}
+
+#icone-menu-item .cicle-tag-i{
+   
+   background-color: rgb(65, 64, 83);
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   margin-left: 5px;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+#icone-menu-item .cicle-tag-i i{
+   color: aliceblue;
+   font-size: .6rem;
+   cursor: pointer;
+   padding: 3%;
+}
+
+#icone-check{
+   position: absolute;
+   left: 0;
+   background-color: rgb(72, 255, 0);
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-left: 15px;
+
+}
+
+#icone-check i{
+   color: aliceblue;
+}
