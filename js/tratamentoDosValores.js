@@ -11,17 +11,11 @@ document.querySelector('#img-btn-inserir').addEventListener('click', ()=>{
    }
 })
 
-
 document.addEventListener('DOMContentLoaded', function() {
 
       console.log("DOM (estrutura HTML) totalmente carregado!");
       ListaDosItensViaSSE()
       animaItens()
-      //alteraFormatacaoItem()
-      // 
-      // concluirTarefa()
-      // editandoItens()
-      // deletandoItem()
       
 });
 
@@ -134,11 +128,12 @@ function ListaDosItensViaSSE(){
          const updatedTodos = JSON.parse(event.data);
          updateTodoListDisplay(updatedTodos)
          alteraFormatacaoItem()
-         concluirTarefa()
          editandoItens()
          deletandoItem()
          deletarListaCompleta()
-         
+         concluirTarefa()
+      
+
       } catch (err){
          console.error("Erro ao analisar os dados recebidos:", err);
       }
@@ -167,18 +162,21 @@ function animaItens() {
    
 }
 
-async function concluirTarefa(dados){
+async function concluirTarefa(){
+
+   console.log('abriu a função de conluir tarefa')
 
    let iconeCheck = document.querySelectorAll('.fa-check') 
    let lista = await requisicoesXmlHttp('GET', "/api/lista") 
-  
+   
 
    iconeCheck.forEach( (iconeCheck)=>{
 
       iconeCheck.parentElement.addEventListener('click', (event)=>{ 
 
-      let TAG_item = event.target.parentElement
+      let TAG_item = event.target.parentElement.parentElement
       let TAG_Value = TAG_item.getAttribute('value')
+      
       
          let copiaDalista = lista.map( (elemento) => {
 
@@ -194,7 +192,7 @@ async function concluirTarefa(dados){
             
          })
 
-         
+      
          const JSONSTRING = JSON.stringify(copiaDalista, null, 2);
          requisicoesXmlHttp('POST', '/api/tarefaCompleta', JSONSTRING )
       
@@ -202,6 +200,8 @@ async function concluirTarefa(dados){
    })
    
 }
+
+
 
 function alteraFormatacaoItem() {
 
